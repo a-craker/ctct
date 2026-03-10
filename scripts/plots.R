@@ -95,3 +95,13 @@ plot_data %>%
   filter(sub3 == 1) %>% 
   group_by(wave) %>% 
   summarise(n = n_distinct(race_no))
+
+
+plot_data %>% 
+  group_by(wave) %>% 
+  summarise(median = median(time_seconds)) %>% 
+  mutate(
+    hours = median %/% 3600,
+    minutes = (median %% 3600) %/% 60,
+    seconds = median %% 60
+  )
